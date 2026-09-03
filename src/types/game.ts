@@ -19,7 +19,7 @@ export interface Playlist{id:string;title:string;description:string;videoIds:str
 export interface Trend{id:string;name:string;category:VideoCategory;intensity:number;lifetimeHours:number;bonusMultiplier:number}
 export interface SocialPost{id:string;source:string;text:string;category:'trend'|'news'|'drama'|'community';relatedTrendId?:string}
 export interface BusinessOffer{id:string;company:string;type:'sponsor'|'agency'|'collab'|'platform';title:string;amount?:number;commission?:number;minSubscribers:number}
-export interface BusinessContract{id:string;offerId:string;company:string;type:BusinessOffer['type'];title:string;amount?:number;commission?:number;signedAt:string}
+export interface BusinessContract{id:string;offerId:string;company:string;type:BusinessOffer['type'];title:string;amount?:number;commission?:number;signedAt:string;startWeek:number;durationWeeks:number;weeksElapsed:number;objective:'publish'|'views'|'none';target:number;progress:number;status:'active'|'completed'|'failed';paid:boolean}
 export interface SimCreator{id:string;name:string;category:VideoCategory;subscribers:number;reputation:number;growthRate:number;active:boolean}
 export interface Notification{id:string;message:string;type:NotificationType}
 export interface GameState{time:GameTime;creator:CreatorProfile;skills:CreatorSkills;equipment:Equipment;crew:Crew;reputationStats:ReputationStats;audience:AudienceSegment[];projects:VideoProject[];publishedVideos:PublishedVideo[];playlists:Playlist[];series:Series[];trends:Trend[];socialPosts:SocialPost[];offers:BusinessOffer[];contracts:BusinessContract[];worldCreators:SimCreator[];pendingRevenue:number;notifications:Notification[];skillXp:Record<SkillKey,number>}
