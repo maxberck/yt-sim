@@ -10,5 +10,6 @@ export function useGame(){
  const workOnProject=(projectId:string,taskId:string)=>dispatch({type:'WORK_PROJECT',projectId,taskId});
  const createPlaylist=(title:string,description:string)=>dispatch({type:'CREATE_PLAYLIST',title,description});
  const addToPlaylist=(playlistId:string,videoId:string)=>dispatch({type:'ADD_TO_PLAYLIST',playlistId,videoId});
- return {...state,dispatch,rest:()=>dispatch({type:'REST'}),sleep:()=>dispatch({type:'SLEEP'}),work:(hours=3)=>dispatch({type:'WORK',hours}),createProject,workOnProject,advanceTurn:()=>dispatch({type:'WORK',hours:8}),publishVideo:(id:string)=>dispatch({type:'PUBLISH_VIDEO',projectId:id}),toggleFace:()=>dispatch({type:'TOGGLE_FACE'}),createPlaylist,addToPlaylist};
+ const acceptOffer=(offerId:string)=>dispatch({type:'ACCEPT_OFFER',offerId});
+ return {...state,dispatch,rest:()=>dispatch({type:'REST'}),sleep:()=>dispatch({type:'SLEEP'}),work:(hours=3)=>dispatch({type:'WORK',hours}),createProject,workOnProject,advanceTurn:()=>dispatch({type:'WORK',hours:8}),publishVideo:(id:string)=>dispatch({type:'PUBLISH_VIDEO',projectId:id}),toggleFace:()=>dispatch({type:'TOGGLE_FACE'}),createPlaylist,addToPlaylist,acceptOffer};
 }
