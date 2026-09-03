@@ -1,8 +1,9 @@
-import type { GameState } from '../types/game';
-export const INITIAL_STATE: GameState = {
+import type {GameState} from '../types/game';
+const skills={editing:1,writing:1,filming:1,research:1,thumbnail:1,audio:1,communication:1,storytelling:1,business:1} as const;
+export const INITIAL_STATE:GameState={
 time:{date:'2026-09-03',hour:8},
 creator:{name:'MonChaine',age:18,subscribers:150,money:1200,energy:100,maxEnergy:100,stress:0,reputation:10,knownLanguages:['Français'],job:'Étudiant',week:1,showsFace:false},
-skills:{editing:1,writing:1,filming:1,research:1,thumbnail:1,audio:1,communication:1,storytelling:1,business:1},
+skills:{...skills},skillXp:{editing:0,writing:0,filming:0,research:0,thumbnail:0,audio:0,communication:0,storytelling:0,business:0},
 equipment:{cameraLevel:1,micLevel:1,pcLevel:1},crew:{editorsCount:0,cameramenCount:0,communityManagersCount:0,managersCount:0},
 reputationStats:{notoriety:5,popularity:10,credibility:8,trust:10,creatorRelations:5},
 audience:[{id:'gaming',name:'Gaming',share:.55,loyalty:25,interests:['Gaming']},{id:'tech',name:'Tech',share:.15,loyalty:15,interests:['Tech']},{id:'curious',name:'Curieux occasionnels',share:.3,loyalty:5,interests:['Vlog','Documentaire','Cinéma']}],
