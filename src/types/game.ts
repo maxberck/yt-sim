@@ -1,18 +1,25 @@
-export type VideoCategory = 'Gaming' | 'Tech' | 'Vlog' | 'ASMR' | 'Documentaire' | 'Cinéma' | 'Politique';
-export type VideoFormat = 'short' | 'standard' | 'documentary' | 'live';
-export type Language = 'Français' | 'Anglais' | 'Espagnol' | 'Japonais';
-export type SkillKey = 'editing' | 'writing' | 'filming' | 'research' | 'thumbnail' | 'audio' | 'communication' | 'storytelling' | 'business';
-export type ChannelTab = 'home' | 'videos' | 'playlists' | 'about';
-
-export interface CreatorSkills { editing:number; writing:number; filming:number; research:number; thumbnail:number; audio:number; communication:number; storytelling:number; business:number; }
-export interface Equipment { cameraLevel:number; micLevel:number; pcLevel:number; }
-export interface Crew { editorsCount:number; cameramenCount:number; }
-export interface CreatorProfile { name:string; subscribers:number; money:number; energy:number; maxEnergy:number; stress:number; week:number; reputation:number; knownLanguages:Language[]; showsFace:boolean; }
-export interface Series { id:string; name:string; category:VideoCategory; popularity:number; loyalty:number; expectation:number; fatigue:number; season:number; episodeCount:number; lastViews:number; status:'active'|'resting'|'finished'; }
-export interface ProductionTask { id:string; label:string; skill:SkillKey; energyCost:number; qualityGain:number; xpGain:number; requiredLevel:number; done:boolean; }
-export interface VideoProject { id:string; title:string; category:VideoCategory; format:VideoFormat; language:Language; isFeat:boolean; isSeries:boolean; seriesId?:string; episodeNumber?:number; totalWeeks:number; weeksDone:number; quality:number; hype:number; tasks:ProductionTask[]; thumbnail:string; published:boolean; }
-export interface PublishedVideo { id:string; projectId:string; title:string; category:VideoCategory; format:VideoFormat; thumbnail:string; views:number; subscribersGained:number; week:number; seriesId?:string; episodeNumber?:number; }
-export interface Playlist { id:string; title:string; description:string; videoIds:string[]; }
-export interface Trend { id:string; name:string; category:VideoCategory; intensity:number; lifetime:number; }
-export interface SocialPost { id:string; source:string; text:string; category:'trend'|'news'|'drama'|'community'; relatedTrendId?:string; }
-export interface BusinessOffer { id:string; company:string; type:'sponsor'|'agency'|'collab'|'platform'; title:string; amount?:number; commission?:number; minSubscribers:number; }
+export type VideoCategory='Gaming'|'Tech'|'Vlog'|'ASMR'|'Documentaire'|'Cinéma'|'Politique';
+export type VideoFormat='short'|'standard'|'documentary'|'live';
+export type Language='Français'|'Anglais'|'Espagnol'|'Japonais';
+export type SkillKey='editing'|'writing'|'filming'|'research'|'thumbnail'|'audio'|'communication'|'storytelling'|'business';
+export type ChannelTab='home'|'videos'|'playlists'|'about';
+export type NotificationType='success'|'error'|'info';
+export interface GameTime{date:string;hour:number}
+export interface CreatorSkills{editing:number;writing:number;filming:number;research:number;thumbnail:number;audio:number;communication:number;storytelling:number;business:number}
+export interface Equipment{cameraLevel:number;micLevel:number;pcLevel:number}
+export interface Crew{editorsCount:number;cameramenCount:number;communityManagersCount:number;managersCount:number}
+export interface CreatorProfile{name:string;age:number;subscribers:number;money:number;energy:number;maxEnergy:number;stress:number;reputation:number;knownLanguages:Language[];job:string;week:number;showsFace:boolean}
+export interface ReputationStats{notoriety:number;popularity:number;credibility:number;trust:number;creatorRelations:number}
+export interface AudienceSegment{id:string;name:string;share:number;loyalty:number;interests:VideoCategory[]}
+export interface Series{id:string;name:string;category:VideoCategory;popularity:number;loyalty:number;expectation:number;fatigue:number;season:number;episodeCount:number;lastViews:number;status:'active'|'resting'|'finished'}
+export interface ProductionTask{id:string;label:string;skill:SkillKey;energyCost:number;qualityGain:number;xpGain:number;requiredLevel:number;done:boolean}
+export interface VideoProject{id:string;title:string;category:VideoCategory;format:VideoFormat;language:Language;isFeat:boolean;isSeries:boolean;seriesId?:string;episodeNumber?:number;totalHours:number;hoursDone:number;quality:number;hype:number;tasks:ProductionTask[];imageStock:string;published:boolean;totalTurnsRequired:number;turnsSpent:number;isReadyToPublish:boolean}
+export interface PublishedVideo{id:string;projectId:string;title:string;category:VideoCategory;format:VideoFormat;thumbnail:string;views:number;subscribersGained:number;revenueGenerated:number;publishedAt:string;week:number;seriesId?:string;episodeNumber?:number}
+export interface Playlist{id:string;title:string;description:string;videoIds:string[]}
+export interface Trend{id:string;name:string;category:VideoCategory;intensity:number;lifetimeHours:number;bonusMultiplier:number}
+export interface SocialPost{id:string;source:string;text:string;category:'trend'|'news'|'drama'|'community';relatedTrendId?:string}
+export interface BusinessOffer{id:string;company:string;type:'sponsor'|'agency'|'collab'|'platform';title:string;amount?:number;commission?:number;minSubscribers:number}
+export interface SimCreator{id:string;name:string;category:VideoCategory;subscribers:number;reputation:number;growthRate:number;active:boolean}
+export interface Notification{id:string;message:string;type:NotificationType}
+export interface GameState{time:GameTime;creator:CreatorProfile;skills:CreatorSkills;equipment:Equipment;crew:Crew;reputationStats:ReputationStats;audience:AudienceSegment[];projects:VideoProject[];publishedVideos:PublishedVideo[];playlists:Playlist[];series:Series[];trends:Trend[];socialPosts:SocialPost[];offers:BusinessOffer[];worldCreators:SimCreator[];pendingRevenue:number;notifications:Notification[]}
+export type GameAction={type:'REST'}|{type:'SLEEP'}|{type:'WORK';hours:number}|{type:'CREATE_PROJECT';title:string;category:VideoCategory;format:VideoFormat;language:Language;imageStock:string}|{type:'PUBLISH_VIDEO';projectId:string};

@@ -1,0 +1,1 @@
+import type {GameAction} from '../types/game'; export const work=(hours:number):GameAction=>({type:'WORK',hours}); export const sleep=():GameAction=>({type:'SLEEP'}); export const rest=():GameAction=>({type:'REST'});
